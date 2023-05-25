@@ -9,12 +9,12 @@
 \usepackage{subfiles}
 \usepackage{tikz}
 \usepackage{wrapfig}
+\usepackage[bindingoffset=7mm]{geometry} % amount of paper lost by binding on each page
 % \usepackage{fullpage}
 
 \newcommand{\tap}{\includegraphics[scale=0.1]{./assets/Tag_Tap.png}}
 \newcommand{\pay}{\includegraphics[scale=0.1]{./assets/Tag_Paid.png}}
 \newcommand{\dice}{\includegraphics[scale=0.15]{./assets/Icon_Dice.png}}
-
 
 \def\plus{\texttt{+}}
 \def\minus{\texttt{-}}
@@ -42,7 +42,7 @@
     \end{titlepage}
     % \maketitle % creates title using information in preamble (title, author, date)
     \tableofcontents
-    \newpage
+    \cleardoublepage
 
     \chapter{Setup}
     \label{setup}
