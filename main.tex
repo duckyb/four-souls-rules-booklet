@@ -1,48 +1,116 @@
+\documentclass[
+  fontsize=10pt,
+  paper=a5,
+  version=last,
+  chapterprefix=true
+  ]{scrbook}
 
-
-% This is a simple sample document.  For more complicated documents take a look in the exercise tab. Note that everything that comes after a % symbol is treated as comment and ignored when the code is compiled.
-
-\documentclass[a4paper, twoside]{report} % \documentclass{} is the first command in any LaTeX code.  It is used to define what kind of document you are creating such as an article or a book, and begins the document preamble
-
-\usepackage{amsmath} % \usepackage is a command that allows you to add functionality to your LaTeX code
+\usepackage{amsmath}
 \usepackage{parskip}
 \usepackage{subfiles}
 \usepackage{tikz}
 \usepackage{wrapfig}
-\usepackage[bindingoffset=7mm]{geometry} % amount of paper lost by binding on each page
-% \usepackage{fullpage}
+\usepackage{etoolbox}
+\usepackage[a5paper, bindingoffset=5mm, left=1.3cm, top=1.75cm, right=1.3cm, bottom=2cm, footskip=17.5pt]{geometry}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
+}
+\usepackage{fancyhdr}
+    
+
+%% setup config stuff
+
+\RedeclareSectionCommand[
+  %runin=false,
+  afterindent=false,
+  beforeskip=0pt,
+  afterskip=.5\baselineskip]{chapter}
+\RedeclareSectionCommand[
+  %runin=false,
+  afterindent=false,
+  beforeskip=.7\baselineskip,
+  afterskip=.4\baselineskip]{section}
+\RedeclareSectionCommand[
+  %runin=false,
+  afterindent=false,
+  beforeskip=.5\baselineskip,
+  afterskip=.4\baselineskip]{subsection}
+\RedeclareSectionCommand[
+  %runin=false,
+  afterindent=false,
+  beforeskip=.5\baselineskip,
+  afterskip=.25\baselineskip]{subsubsection}
+\RedeclareSectionCommand[
+  runin=true,
+  %afterindent=false,
+  beforeskip=.5\baselineskip,
+  afterskip=1em]{paragraph}
+\RedeclareSectionCommand[
+  runin=true,
+  %afterindent=false,
+  beforeskip=.5\baselineskip,
+  afterskip=1em]{subparagraph}
+
+\addtokomafont{disposition}{\rmfamily}
+\setlength{\parskip}{2pt}
+\setlength\intextsep{0pt}
+\let\cleardoublepage\clearpage
 
 \newcommand{\tap}{\includegraphics[scale=0.1]{./assets/Tag_Tap.png}}
 \newcommand{\pay}{\includegraphics[scale=0.1]{./assets/Tag_Paid.png}}
 \newcommand{\dice}{\includegraphics[scale=0.15]{./assets/Icon_Dice.png}}
+\newcommand{\cardw}{0.3\textwidth}
+\newcommand{\cardv}{0.41\textwidth}
+\newcommand{\cardfigv}[1]{
+    \begin{wrapfigure}[12]{R}{\cardw}
+        \includegraphics[width=\cardw]{#1}
+    \end{wrapfigure}
+}
+\newcommand{\cardfigh}[1]{
+    \begin{wrapfigure}[9]{R}{\cardv}
+        \includegraphics[height=\cardw]{#1}
+    \end{wrapfigure}
+}
+
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
 
 \def\plus{\texttt{+}}
 \def\minus{\texttt{-}}
 
-\title{Four Souls - Extended Rulebook} % Sets article title
-\author{foursouls.com} % Sets authors name
-\date{\today} % Sets date for date compiled
+\renewcommand{\chapterpagestyle}{fancy}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO, Le]{\leftmark}
+\fancyfoot[C]{\textbf{\thepage}}
 
-% The preamble ends with the command \begin{document}
-\begin{document} % All begin commands must be paired with an end command somewhere
+
+%% setup config end
+
+\title{Four Souls - Extended Rulebook}
+\author{foursouls.com}
+\date{\today}
+
+\begin{document}
     \begin{titlepage}
         \centering
-        \vfill
-        \includegraphics[width=\textwidth]{assets/foursouls.png}
-        \vskip2cm
+        \includegraphics[width=\textwidth]{assets/foursouls.png}\\
         {\bfseries\LARGE
-        Extended Rulebook\\
-        \vskip5mm
-        \Large
-        \today
+        Extended Rulebook
+        \vfill
+        \Large\today
         }
-        \vskip2cm
+        \vfill
         \includegraphics[width=4cm]{assets/qr-code.pdf}\\
         https://foursouls.com/rules/extended-rulebook
     \end{titlepage}
-    % \maketitle % creates title using information in preamble (title, author, date)
     \tableofcontents
-    \cleardoublepage
 
     \chapter{Setup}
     \label{setup}
@@ -52,28 +120,26 @@
 
     Place the top two cards of the treasure deck face up next to it, forming two \textbf{shop slots}. These are the starting \textbf{shop items}.
 
-    Place the top two cards of the Monster Deck face up next to it, forming two \textbf{monster slots}. Place any event cards (monster cards without a stat block; see \textbf{Card Types}\footnote{page \pageref{types}}) put in these slots during setup on the bottom of the deck and replace them with the top card of the Monster Deck. Repeat this until both monster slots have \textbf{monsters} in them.
+    Place the top two cards of the Monster Deck face up next to it, forming two \textbf{monster slots}. Place any event cards (monster cards without a stat block; see \textbf{Card Types}\footnote{page~\pageref{types}}) put in these slots during setup on the bottom of the deck and replace them with the top card of the Monster Deck. Repeat this until both monster slots have \textbf{monsters} in them.
 
     If you are playing with the Room Deck, place the top card of the Room Deck next to it, forming a \textbf{room slot}. That card will be the starting \textbf{room}.
 
     If you are playing with \textbf{bonus souls}, shuffle them, and pick 3 at random. Those 3 are the \textbf{active bonus souls} for the game and are placed face-up next to the play area.
 
-    Deal a random character card to each player, as well as that character’s starting item card. Characters start the game \textbf{deactivated} (turned sideways). Starting items start the game \textbf{charged} (turned upright). Abilities that trigger at the start of the game trigger, for example Eden’s triggered ability. No one has \textbf{priority} here (see The Stack\footnote{page \pageref{stack}}) and so these abilities will all resolve instantly.
+    Deal a random character card to each player, as well as that character’s starting item card. Characters start the game \textbf{deactivated} (turned sideways). Starting items start the game \textbf{charged} (turned upright). Abilities that trigger at the start of the game trigger, for example Eden’s triggered ability. No one has \textbf{priority} here (see The Stack\footnote{page~\pageref{stack}}) and so these abilities will all resolve instantly.
 
     Deal 3 loot cards and 3¢ to each player. Each player puts the loot cards in their \textbf{hand}.
 
     Finally, you must decide on the starting player: the saddest player goes first! You can also each roll a dice (lowest roll goes first!) or use any other fair method of randomization, if you prefer. The game then starts, with the starting player taking the first turn.
-
+    \clearpage
+    
     \chapter{Card Types}
     \label{types}
     \section{Treasure Cards}
-    \begin{wrapfigure}{r}{0.25\textwidth}
-        \centering
-        \includegraphics[width=30mm]{assets/treasure.png}
-    \end{wrapfigure}
-    Treasure cards are found in the treasure deck. Whilst \textbf{in play} (see \textbf{Game Zones}\footnote{page \pageref{zones}}), a treasure card is an object referred to as an \textbf{item}. This means items are either controlled by a player or in the shop.
+    \cardfigv{assets/treasure.png}
+    Treasure cards are found in the treasure deck. Whilst \textbf{in play} (see \textbf{Game Zones}\footnote{page~\pageref{zones}}), a treasure card is an object referred to as an \textbf{item}. This means items are either controlled by a player or in the shop.
   
-    Players will acquire items throughout the game. Items have a wide variety of abilities that can range from modifying gameplay to interacting with other players and monsters (see Abilities\footnote{page \pageref{abilities}}). Players place any items they control face up in front of them.
+    Players will acquire items throughout the game. Items have a wide variety of abilities that can range from modifying gameplay to interacting with other players and monsters (see Abilities\footnote{page~\pageref{abilities}}). Players place any items they control face up in front of them.
   
     Any time a card instructs a player to \textbf{gain treasure}, they gain that many cards from the top of the treasure deck, putting them into play under their control.
   
@@ -83,24 +149,19 @@
     Treasure cards can have either a gold or a silver border. The border color itself has no mechanical meaning, but serves as a reminder of what kind of abilities the card has: a gold-bordered card (an \textbf{active item}) has one or more activated abilities, while a silver-bordered card doesn’t have any activated abilities (a \textbf{passive item}).
 
     \subsection{Shop Items}
-    Items in the shop slots are referred to as \textbf{shop items}. Shop items can be purchased (see \textbf{Purchasing}\footnote{page \pageref{purchasing}}). Unless otherwise specified, an item’s abilities do not function while it is in the shop, with the exception of triggered abilities that trigger when an item enters or leaves play.
+    Items in the shop slots are referred to as \textbf{shop items}. Shop items can be purchased (see \textbf{Purchasing}\footnote{page~\pageref{purchasing}}). Unless otherwise specified, an item’s abilities do not function while it is in the shop, with the exception of triggered abilities that trigger when an item enters or leaves play.
 
+    \clearpage
     \section{Loot Cards}
-    \begin{wrapfigure}{r}{0.25\textwidth}
-        \centering
-        \includegraphics[width=30mm]{assets/loot.png}
-    \end{wrapfigure}
+    \cardfigv{assets/loot.png}
     Loot cards are found in the loot deck, and in players’ hands. When a player is instructed to \textbf{loot}, they draw that many cards from the top of the loot deck into their hand. Players keep loot cards in their hand until they \textbf{play} or \textbf{discard} them. A player’s hand is private, but anyone can count the number of cards in a player’s hand.
 
-    Players can \textbf{play} loot cards from their hand whenever they have \textbf{priority} (see \textbf{The Stack}\footnote{page \pageref{stack}}) and a \textbf{loot play} available (see \textbf{Turn Structure}\footnote{page \pageref{turn}}). When loot cards are played they are put onto \textbf{the stack} and referred to as \textbf{loot}. When a \textbf{loot} resolves, you perform its \textbf{loot ability} (see \textbf{Abilities}\footnote{page \pageref{abilities}}), and then put it into the loot discard.
+    Players can \textbf{play} loot cards from their hand whenever they have \textbf{priority} (see \textbf{The Stack}\footnote{page~\pageref{stack}}) and a \textbf{loot play} available (see \textbf{Turn Structure}\footnote{page~\pageref{turn}}). When loot cards are played they are put onto \textbf{the stack} and referred to as \textbf{loot}. When a \textbf{loot} resolves, you perform its \textbf{loot ability} (see \textbf{Abilities}\footnote{page~\pageref{abilities}}), and then put it into the loot discard.
 
     Some abilities and effects may permit a player to play loot cards from other zones. In these cases normal timing and loot play rules still apply, unless otherwise specified. Some other abilities instead allow players to play loot cards as part of resolution. In these cases timing rules do not apply, unless otherwise specified, but loot play rules do still apply. There are also some abilities that will permit a player to play a loot card without using a loot play. This will be specified in the ability if it is the case.
 
     \section{Monster Cards}
-    \begin{wrapfigure}{r}{0.25\textwidth}
-        \centering
-        \includegraphics[width=30mm]{assets/monster.png}
-    \end{wrapfigure}
+    \cardfigv{assets/monster.png}
     Monster cards are found in the monster deck. Whilst \textbf{in play}, monster cards are objects referred to as either a \textbf{monster} (if they have a stat block) or an \textbf{event} (if they don’t have a stat block).
 
     If an ability on a monster card doesn’t specify a particular player, instead referring to ‘you’, it means the active player.
@@ -110,7 +171,7 @@
     \subsection{Monsters}
     Non-event monster cards that have a stat block become \textbf{monsters} when in play, and exist in \textbf{monster slots}.
 
-    \textbf{Monsters} can be attacked, unless otherwise specified (see \textbf{Attacking}\footnote{page \pageref{attacking}}).
+    \textbf{Monsters} can be attacked, unless otherwise specified (see \textbf{Attacking}\footnote{page~\pageref{attacking}}).
     When a monster is killed, it yields a reward, as indicated in the reward box on the card. The \textbf{active player} (the player whose turn it is) always receives the rewards when a monster dies, regardless of who actually killed it. The same is true for any souls that may be gained when a \textbf{boss} dies.
 
     \textbf{Boss cards} are a type of non-event monster card. They tend to be harder to kill than other monsters, but tend to yield greater rewards, as well as souls! When a monster with a soul icon dies, the active player gains it as a \textbf{soul}, unless otherwise specified.
@@ -118,12 +179,12 @@
     \subsection{Events}
     Event cards are a type of monster card that have no stat block. They become \textbf{events} when in play, and also exist in \textbf{monster slots}, but they can’t be attacked.
 
-    All abilities on event cards, unless otherwise specified, are triggered abilities (see \textbf{Abilities}\footnote{page \pageref{abilities}}) that trigger \textbf{when the card enters play}. If an event card has multiple abilities they will all trigger when the event enters play, unless otherwise specified.
+    All abilities on event cards, unless otherwise specified, are triggered abilities (see \textbf{Abilities}\footnote{page~\pageref{abilities}}) that trigger \textbf{when the card enters play}. If an event card has multiple abilities they will all trigger when the event enters play, unless otherwise specified.
 
     When each of an event’s abilities have resolved or been canceled it is put into the monster discard.
 
     If an event leaves play, its abilities are removed from the stack.
-    \textbf{Curse cards} are a type of event card, with the keyword ability \textbf{curse} (see \textbf{Keyworded Abilities}\footnote{page \pageref{keyworded}}). The active player chooses which player receives any revealed curses, and they are placed face up near that player’s character. When a player dies, they put all curses they control into discard.
+    \textbf{Curse cards} are a type of event card, with the keyword ability \textbf{curse} (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}). The active player chooses which player receives any revealed curses, and they are placed face up near that player’s character. When a player dies, they put all curses they control into discard.
 
     \section{Souls}
     A number of cards of different types have a soul icon. When a player controls a card with a soul icon as a \textbf{soul}, it provides them with a soul value. The soul value a soul provides is normally indicated by the icon on the card, but can also be indicated by an effect that specifies a value. Souls are quite important – when a player controls a total soul value of 4, they win! Players keep any souls they control face up next to their character to keep track of them. The number of souls a player controls is public information.
@@ -137,10 +198,7 @@
     Similarly, if an ability looks for a player gaining or being given a soul, it will consider a soul with a soul value of greater than 1 the same as gaining or being given a number of souls equal to that soul value, even though technically just one soul is coming under that player’s control.
 
     \subsection{Bonus Souls}
-    \begin{wrapfigure}{r}{0.25\textwidth}
-        \centering
-        \includegraphics[width=30mm]{assets/bonus_soul.png}
-    \end{wrapfigure}
+    \cardfigv{assets/bonus_soul.png}
     Once you are more familiar with the game’s mechanics, you are encouraged to add \textbf{bonus souls} to your games.
 
     When starting a game where you are playing with bonus souls, you shuffle them and pick 3 at random. Those 3 are the \textbf{active bonus souls} for the game. These cards are not added to any deck and are instead put face up next to the play area. Bonus souls, before they are gained, are not considered in play.
@@ -150,28 +208,22 @@
     Bonus souls can only be gained once per game. If a bonus soul is ever destroyed, they are placed face down next to the game and cannot be gained again.
 
     \section{Character Cards}
-    \begin{wrapfigure}{r}{0.25\textwidth}
-        \centering
-        \includegraphics[width=30mm]{assets/character.png}
-    \end{wrapfigure}
-    Character cards start outside the game. When starting the game, a character card is randomly assigned to a player and put into play under their control (see \textbf{Setup}\footnote{page \pageref{setup}}). While in play, character cards are objects referred to as \textbf{characters}.
+    \cardfigv{assets/character.png}
+    Character cards start outside the game. When starting the game, a character card is randomly assigned to a player and put into play under their control (see \textbf{Setup}\footnote{page~\pageref{setup}}). While in play, character cards are objects referred to as \textbf{characters}.
     
     A character card may list a \textbf{starting item}. This is a triggered ability that functions when the card enters play and causes the player that controls that character to put that starting item card under their control. Starting item cards also start outside the game. These triggered abilities don’t use the stack. While in play, starting item cards are objects referred to as \textbf{items}. Starting items have the keyword ability \textbf{Eternal} which means they can’t be destroyed or put into discard.
     
     Character cards have a stat box with a health stat and an attack stat. These define the stats of the player that controls that character.
     
     A character may be worth souls if it has a soul icon on it, or if there is a soul value specified by an effect. For example, The Lost provides a soul value of 1. Characters that have a soul value are \textbf{not} considered a soul.
-
+    
     \section{Rooms Cards}
-    \begin{wrapfigure}{r}{0.30\textwidth}
-        \centering
-        \includegraphics[height=30mm]{assets/room.png}
-    \end{wrapfigure}
+    \cardfigh{assets/room.png}
     Room cards were introduced in the Requiem expansion. Room cards are found in the room deck, which is an optional bonus deck that can be added once you feel comfortable with the basic rules of the game. While \textbf{in play}, room cards are objects referred to as \textbf{rooms}. Rooms exist in \textbf{room slots}.
 
     Rooms can have different types of abilities through which they influence the game. Static and triggered abilities on rooms work just the same as anywhere else. Activated abilities on rooms can only be activated by the active player. If a room’s ability doesn’t specify a particular player, for example instead referring to ‘you’, it means the active player.
 
-    During the \textbf{end phase} (see \textbf{Turn Structure}\footnote{page \pageref{turn}}), if a monster died during the turn, the active player can choose to put a room into discard. If that room slot is empty following this, it will be filled with the top card of the room deck. The active player can of course instead choose to leave any existing rooms in play, if they wish!
+    During the \textbf{end phase} (see \textbf{Turn Structure}\footnote{page~\pageref{turn}}), if a monster died during the turn, the active player can choose to put a room into discard. If that room slot is empty following this, it will be filled with the top card of the room deck. The active player can of course instead choose to leave any existing rooms in play, if they wish!
 
     \section{Anatomy of a Card}
     \subsection*{Name Box} Contains a card’s name.
@@ -237,13 +289,13 @@
     Covered in a slot is a public zone. That means all cards covered in a slot are considered public information, unless otherwise specified. The order of cards in a slot can’t be changed unless a player is instructed to do so by an ability.
 
     \section{The Stack}
-    \textbf{The stack} is a zone where loot, abilities, dice rolls, and other things go to \textbf{resolve}. \textbf{Resolving} means that the thing on the stack leaves the stack and its effect is carried out by the player or players instructed to do so (see \textbf{The Stack}\footnote{page \pageref{stack}}).
+    \textbf{The stack} is a zone where loot, abilities, dice rolls, and other things go to \textbf{resolve}. \textbf{Resolving} means that the thing on the stack leaves the stack and its effect is carried out by the player or players instructed to do so (see \textbf{The Stack}\footnote{page~\pageref{stack}}).
 
     The stack is an important concept that determines the order of effects and allows players to react to each other and to the game.
 
     Each new loot, ability, or dice roll is added to the top of the stack. The stack resolves in a last in, first out order. That means that the last thing put onto the stack will resolve before things put onto the stack before it
 
-    A loot or ability resolves when each player passes \textbf{priority} in succession from the player who put that loot or ability on the stack, with that player also not putting anything on else the stack themselves (see \textbf{Priority}\footnote{page \pageref{priority}}).
+    A loot or ability resolves when each player passes \textbf{priority} in succession from the player who put that loot or ability on the stack, with that player also not putting anything on else the stack themselves (see \textbf{Priority}\footnote{page~\pageref{priority}}).
 
     If an ability is removed from the stack, it does not resolve. If a loot being played is removed from the stack by an ability, it does not resolve and is moved to whatever zone is determined by the ability. If a loot or ability is \textbf{canceled}, then it is removed from the stack without resolving. Loot cards removed from the stack in this way go to the loot discard.
 
@@ -350,13 +402,14 @@
 
     Remember as well that colons in effect text, except when that text is used as an indicator for a roll ability, indicate costs. The cost would have to be paid for what comes after the colon to take effect.
     \section{Attackable Items and Rooms}
-    Normally, attacks are made against monsters. Some other objects, for example items or rooms, can have abilities that allow them to be attacked, however. These cards will have stat blocks detailing their health, evasion, and attack stats for any attacks made against them. While they are in play, players may choose these attackable objects as a target when they declare an attack. All rules on when a player is able to declare an attack still apply. Once the attack has started, it will proceed exactly the same as if the target was a monster (see \textbf{Attacking}\footnote{page \pageref{attacking}}).
+    Normally, attacks are made against monsters. Some other objects, for example items or rooms, can have abilities that allow them to be attacked, however. These cards will have stat blocks detailing their health, evasion, and attack stats for any attacks made against them. While they are in play, players may choose these attackable objects as a target when they declare an attack. All rules on when a player is able to declare an attack still apply. Once the attack has started, it will proceed exactly the same as if the target was a monster (see \textbf{Attacking}\footnote{page~\pageref{attacking}}).
 
-    If an attackable object is killed during the attack, it is destroyed (see \textbf{Destroy and Kill}\footnote{page \pageref{destroy}}). Any rewards, if indicated in a reward box on the card, will go to the active player when that object dies or is destroyed (even if that object is destroyed outside of an attack).
+    If an attackable object is killed during the attack, it is destroyed (see \textbf{Destroy and Kill}\footnote{page~\pageref{destroy}}). Any rewards, if indicated in a reward box on the card, will go to the active player when that object dies or is destroyed (even if that object is destroyed outside of an attack).
 
     It is important to note that an item or room that can be attacked is not a \textbf{monster}. This means they can’t be targeted by any ability or effect that targets a ‘monster’ specifically.
+
     \section{Attacking Other Players}
-    Some abilities may allow you to attack other players – or indeed allow other players to attack you! These abilities will specify what the targeted player’s evasion will be for the attack. If an ability allows you to attack other players, you may choose a player as a target when you declare an attack. All rules on when you are able to declare an attack still apply. Once the attack has started, it will proceed exactly the same as if the target was a monster (see \textbf{Attacking}\footnote{page \pageref{attacking}}).
+    Some abilities may allow you to attack other players – or indeed allow other players to attack you! These abilities will specify what the targeted player’s evasion will be for the attack. If an ability allows you to attack other players, you may choose a player as a target when you declare an attack. All rules on when you are able to declare an attack still apply. Once the attack has started, it will proceed exactly the same as if the target was a monster (see \textbf{Attacking}\footnote{page~\pageref{attacking}}).
 
     If multiple effects allowing you to attack other players exist at the same time and specify that players have a different evasion stat, the effect that was created most recently takes precedence.
     \section{Cancel}
@@ -413,7 +466,7 @@
 
     Most abilities that use counters refer to generic counters. If a card says to add a \textbf{counter}, without any further specification, it means to add a generic counter. There are a number of abilities that add specific named counters to cards as well, however. Named counters still count as \textbf{counters} for any abilities that refer to them. For example, if a card has 5 generic counters and 1 named counter, an ability that takes effect when the card has 6 counters would still do so, and if an ability says to ‘remove a counter’ without further specification, then either a generic or named counter can be removed. Often other abilities will make specific named counters apply effects to a card they are put on, or the named counters will be used as markers that other abilities will interact with. Just like generic counters, named counters have no innate effect – only those which are given to them from elsewhere.
 
-    Any counters that are put on an object or card are tied to that object or card. If an object with counters on it is given to another player, or stolen by one, it keeps those counters. If an object with counters on it is copied (see \textbf{Copying}\footnote{page \pageref{copying}}), the copy of the object will not keep those counters, as it is a different object to the original. Some items start with a certain number of counters already on them. If one of these items is copied, then the copy will start with that number of counters on it, as the ability that gives the object those starting counters is copied. Counters are tied to the object itself, not to a specific side of it, and so if an object with counters on it is flipped it keeps any counters it has.
+    Any counters that are put on an object or card are tied to that object or card. If an object with counters on it is given to another player, or stolen by one, it keeps those counters. If an object with counters on it is copied (see \textbf{Copying}\footnote{page~\pageref{copying}}), the copy of the object will not keep those counters, as it is a different object to the original. Some items start with a certain number of counters already on them. If one of these items is copied, then the copy will start with that number of counters on it, as the ability that gives the object those starting counters is copied. Counters are tied to the object itself, not to a specific side of it, and so if an object with counters on it is flipped it keeps any counters it has.
 
     Counters put on a \textbf{player} are tied to that specific player, and will not be removed even if their \textbf{character} changes. Counters put on a player’s \textbf{character}, however, are tied specifically to the character, \textbf{not the player}, and would be removed if the character was to change.
 
@@ -485,7 +538,7 @@
         \item To \textbf{gain treasure}, you move the specified number of cards from the top of the treasure deck into play under your control.
         \item To \textbf{gain an object in play} (e.g. an item or soul), you move it under your control.
         \begin{itemize}
-            \item When an object (most likely a monster) with a reward box and soul icon dies or is destroyed, the active player gains it as a soul, unless otherwise specified (see \textbf{Monster Death}\footnote{page \pageref{monsterdeath}}).  
+            \item When an object (most likely a monster) with a reward box and soul icon dies or is destroyed, the active player gains it as a soul, unless otherwise specified (see \textbf{Monster Death}\footnote{page~\pageref{monsterdeath}}).  
         \end{itemize}
     \end{itemize}
     \textbf{Give} (and therefore \textbf{steal} and \textbf{swap}) is an action that can be done to many things:      
@@ -527,7 +580,7 @@
     \section{If you do}
     If an ability uses the phrase ‘If you do’, it means that the previous part of the ability must take effect for the next part to take effect. For example, if an item said ‘Destroy this. If you do, gain 25¢.’ you would only gain the 25¢ if the item had been able to be destroyed by its own ability.
     \section{Levels}
-    Some objects use \textbf{levels} to determine which abilities they have at any given time. You use \textbf{level counters} (which function just like any other specific named counter (see \textbf{Counters}\footnote{page \pageref{counters}})) to keep track of the level of an object.
+    Some objects use \textbf{levels} to determine which abilities they have at any given time. You use \textbf{level counters} (which function just like any other specific named counter (see \textbf{Counters}\footnote{page~\pageref{counters}})) to keep track of the level of an object.
 
     If an object levels up, you put a \textbf{level counter} on that object. If an object \textbf{levels down}, you remove a \textbf{level counter} from that object, if able.
 
@@ -622,7 +675,7 @@
     The active player can declare an attack during their action phase whilst the stack is empty.
 
     When a player declares an attack, before they choose what to attack, priority passes. Once priority has passed, that player can then choose to attack a monster in a monster slot, or the top card of the monster deck.
-
+    
     Abilities can be triggered by or otherwise interact with attack declarations. Some abilities are triggered by or interact with the attack declaration itself, before a target is chosen. Others are triggered by or interact with attack declarations against a specific target, and therefore after a target has been chosen. If an ability looks for an attack being declared against a \textbf{monster} specifically, it will not be triggered by or interact with an attack declared against the \textbf{monster deck}, even if the top card becomes a monster once revealed and placed in a slot. If a card has an ability that is triggered by or interacts with an attack being declared against it (e.g. “When an attack is declared on this”), that ability will trigger or otherwise take effect both if the card is already in play in a slot and if it is revealed as the top card when the monster deck is attacked.
 
     By default, the active player may attack once per turn. Effects and abilities may modify the number of attacks the active player can make. Killing a monster outside of an attack (e.g. with an ability or loot card) does not count as a player making an attack.
@@ -630,6 +683,8 @@
     If you attack the top card of the monster deck, you put it on top of a monster slot, covering the monster in it. Any monsters that are covered are no longer in play. If the card put in the monster slot is an event, its abilities trigger upon entering play, and it is put into discard when they have resolved. If a player attacks the top of the deck and it is a monster that can’t be attacked, they put that monster in a monster slot and cancel the attack. If the card revealed is a card with a stat block, but has an ability that specifies that it can’t be attacked, the attack is canceled.
 
     In some cases, other objects (such as players, items, or rooms) can be attacked. If this is the case, the active player may choose to attack them instead of a monster or the top of the monster deck when they declare an attack.
+ 
+    \includegraphics[width=\textwidth]{assets/Monster-Stat-Breakdown-768x484.png}
 
     Each \textbf{attack} consists of multiple \textbf{attack rolls}. Once an attack has started, the attacking player repeatedly rolls a D6 against their chosen target, most commonly a monster. Once you have started an attack, you are committed to the death! The attack will only end when either the attacking player or the target of the attack dies, or if either the attacker or attacked object has 0HP before an attack roll would be made. Players may use the D8 to keep track of the HP of the monster they are attacking.
 
@@ -641,7 +696,6 @@
 
     In a few rare cases, a player and a monster can take lethal damage at the exact same time. In these cases, the monster’s death would resolve first, followed by the player’s.
 
-    \includegraphics[width=\textwidth]{assets/Monster-Stat-Breakdown-768x484.png}
 
     \chapter{Purchasing}
     \label{purchasing}
@@ -655,7 +709,7 @@
 
     \chapter{Refilling Slots}
     \label{refilling}
-    Each shop slot, monster slot, and room slot (if you are playing with the room deck) must have at least one card in it at all times. Whenever a slot becomes empty, it is refilled with the top card of its respective deck. This normally happens the next time any player would gain priority. When a monster slot has become empty due to a monster dying, the slot will refill after all steps of the monster’s death have taken place and after any triggered abilities that triggered off that monster’s death have resolved (see \textbf{Monster Death}\footnote{page \pageref{monsterdeath}}).
+    Each shop slot, monster slot, and room slot (if you are playing with the room deck) must have at least one card in it at all times. Whenever a slot becomes empty, it is refilled with the top card of its respective deck. This normally happens the next time any player would gain priority. When a monster slot has become empty due to a monster dying, the slot will refill after all steps of the monster’s death have taken place and after any triggered abilities that triggered off that monster’s death have resolved (see \textbf{Monster Death}\footnote{page~\pageref{monsterdeath}}).
 
     When refilling a monster slot, it is possible to encounter multiple events in a row. The active player will keep resolving them until a monster ends up in the slot.
 
@@ -762,7 +816,7 @@
 
     Each thing added to the stack is added to the top. This means the stack \textbf{resolves from the top down}, i.e. in a \textbf{last in, first out} order. That means that things on the stack will resolve in the reverse of the order they were added to it.
 
-    A loot or ability \textbf{resolves} when each player passes \textbf{priority} in succession from the player who put that loot or ability on the stack, with that player also not putting anything else on the stack themselves (i.e. no one is able to/wants to respond with anything else, see \textbf{Priority}\footnote{page \pageref{priority}}). Priority passes each time something resolves. This means that players can add new things to \textbf{the stack} as things leave it, i.e. everything on the stack does not need to resolve in one go. However, any individual thing cannot be interrupted while it is resolving.
+    A loot or ability \textbf{resolves} when each player passes \textbf{priority} in succession from the player who put that loot or ability on the stack, with that player also not putting anything else on the stack themselves (i.e. no one is able to/wants to respond with anything else, see \textbf{Priority}\footnote{page~\pageref{priority}}). Priority passes each time something resolves. This means that players can add new things to \textbf{the stack} as things leave it, i.e. everything on the stack does not need to resolve in one go. However, any individual thing cannot be interrupted while it is resolving.
 
     If the stack is empty when all players pass priority, the game progresses to the next step or phase of the turn as appropriate. A player’s \textbf{action phase} is an exception to this: the game will only move to the \textbf{end phase} when the active player decides to end their turn, or an ability ends the turn.
 
@@ -792,7 +846,7 @@
 
     The objective is to collect four souls between the two characters before the d8 reaches zero. You do, you win. You don’t, you lose.
     \section{Setup}
-    Setup is mostly as normal (see \textbf{Setup}\footnote{page \pageref{setup}}). If you are playing solitaire, you still deal out two character cards during setup.
+    Setup is mostly as normal (see \textbf{Setup}\footnote{page~\pageref{setup}}). If you are playing solitaire, you still deal out two character cards during setup.
 
     At the end of setting up, you put out the D8 with the eight side face up. This is the \textbf{timer}.
 
@@ -1004,9 +1058,9 @@
     \subsection*{Active Player}
     The player whose turn it is.
     \subsection*{Ambush}
-    When an ambush resolves, it becomes a monster in a monster slot not being attacked. The active player must make an additional attack on it this turn (see \textbf{Keyworded Abilities}\footnote{page \pageref{keyworded}}).
+    When an ambush resolves, it becomes a monster in a monster slot not being attacked. The active player must make an additional attack on it this turn (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}).
     \subsection*{Attack}
-    Attacking is an action a player can make against a valid attack target, most commonly a monster (see \textbf{Attacking}\footnote{page \pageref{attacking}}).
+    Attacking is an action a player can make against a valid attack target, most commonly a monster (see \textbf{Attacking}\footnote{page~\pageref{attacking}}).
     \subsection*{Attack Roll}
     Dice rolls that are made as part of an attack are \textbf{attack rolls}.
     \subsection*{Cancel}
@@ -1014,9 +1068,9 @@
     \subsection*{Combat Damage}
     Damage that is done as a result of an attack roll is called \textbf{combat damage}.
     \subsection*{Counters}
-    Markers that you place on certain cards. They can be represented by anything you like (tokens, coins, dice, etc.) (see \textbf{Counters}\footnote{page \pageref{counters}}).
+    Markers that you place on certain cards. They can be represented by anything you like (tokens, coins, dice, etc.) (see \textbf{Counters}\footnote{page~\pageref{counters}}).
     \subsection*{Curse}
-    When a curse enters play, the active player gives it to a player. When that player dies, they put it into discard (see \textbf{Keyworded Abilities}\footnote{page \pageref{keyworded}}).
+    When a curse enters play, the active player gives it to a player. When that player dies, they put it into discard (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}).
     \subsection*{Deactivate}
     Turn an object sideways.
     \subsection*{Destroy/Kill}
@@ -1026,13 +1080,13 @@
     \subsection*{Discard}
     Move a loot card from your hand into the loot discard.
     \subsection*{Eternal}
-    Eternal objects can’t be destroyed or put into discard (see \textbf{Keyworded Abilities}\footnote{page \pageref{keyworded}}).
+    Eternal objects can’t be destroyed or put into discard (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}).
     \subsection*{Expand slots}
     Increase the number of slots of the specified slot type by the number specified.
     \subsection*{Flip}
     To flip an object, flip it onto its back face, if it has one. To flip a dice roll, change the result of the roll to 7 minus the current result.
     \subsection*{Gain}
-    Move an object or resource that is under the game’s control to under your own control (see \textbf{Gaining and Giving}\footnote{page \pageref{gaining}}).
+    Move an object or resource that is under the game’s control to under your own control (see \textbf{Gaining and Giving}\footnote{page~\pageref{gaining}}).
     \subsection*{Give}
     Move a specified object or resource, chosen by the player giving it away, from one player’s control to another player’s control.
     \subsection*{Guppy}
@@ -1040,7 +1094,7 @@
     \subsection*{Heal}
     The target object recovers that many HP. An object cannot heal beyond its max HP.
     \subsection*{Indomitable}
-    Indomitable monsters can’t be covered. If they would be put in a monster slot, expand monster slots by 1 and put them in that new slot (see \textbf{Keyworded Abilities}\footnote{page \pageref{keyworded}}).
+    Indomitable monsters can’t be covered. If they would be put in a monster slot, expand monster slots by 1 and put them in that new slot (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}).
     \subsection*{Level Up/Down}
     To level up, put a \textbf{level counter} on that object. To level down, remove a \textbf{level counter}, if able.
     \subsection*{Loot}
@@ -1058,7 +1112,7 @@
     \subsection*{Reroll}
     To reroll a dice roll, roll that dice again. To reroll an item, you destroy it and, if you do, replace it with the top card of the treasure deck.
     \subsection*{Roll-}
-    Roll a dice and put it onto the stack (see \textbf{Keyworded Abilities}\footnote{page \pageref{keyworded}}).
+    Roll a dice and put it onto the stack (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}).
     \subsection*{Round}
     A round lasts from the start of a player’s turn until the start of their next one, with each other player having had a turn in between.
     \subsection*{Steal}
@@ -1066,7 +1120,7 @@
     \subsection*{Swap}
     Two players simultaneously give each other a specified object or resource.
     \subsection*{Trinket}
-    When a trinket resolves, it becomes an item under the control of the player who played it (see \textbf{Keyworded Abilities}\footnote{page \pageref{keyworded}}).
+    When a trinket resolves, it becomes an item under the control of the player who played it (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}).
 
     \chapter{FAQ}
     Something still unclear? There’s a chance the FAQ section on foursouls.com has you covered! Each individual card page will also display FAQs about that particular card, if there are any.
@@ -1102,6 +1156,6 @@
     
     \textbf{Testers} – Jackson Moore, Tyler Glaiel, Danielle McMillen, George Fan, Eli Evans, Acacia Evans, Jay Lewis, Graeme Little, Leon Masters, Dan Zaelit, Cole O’Brien, Doug O’Brien, Crystal Evans, Joe Evans, Alex Austin, Caitlyn Yantis, Peach McMillen, \& special thanks to our playtesters from the Maestro Media discord server.
     \vfill
-    \textbf{PDF Booklet Editor} – @Kyek
+    \textbf{PDF Booklet Editor} – @Kyek; Layout: @keraldi
 
 \end{document} % This is the end of the document
