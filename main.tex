@@ -2,16 +2,15 @@
   fontsize=10pt,
   paper=a5,
   version=last,
-  chapterprefix=true
+  chapterprefix=true,
+  bindingoffset=5mm,
   ]{scrbook}
 
-\usepackage{amsmath}
 \usepackage{parskip}
-\usepackage{subfiles}
 \usepackage{tikz}
 \usepackage{wrapfig}
 \usepackage{etoolbox}
-\usepackage[a5paper, bindingoffset=5mm, left=1.3cm, top=1.75cm, right=1.3cm, bottom=2cm, footskip=17.5pt]{geometry}
+\usepackage[a5paper, bindingoffset=5mm, top=1.75cm, bottom=2cm, footskip=17.5pt]{geometry}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -20,7 +19,7 @@
     linkcolor=black,
     urlcolor=black
 }
-\usepackage{fancyhdr}
+% \usepackage{fancyhdr}
     
 
 %% setup config stuff
@@ -84,11 +83,12 @@
 \def\plus{\texttt{+}}
 \def\minus{\texttt{-}}
 
-\renewcommand{\chapterpagestyle}{fancy}
-\pagestyle{fancy}
-\fancyhead{}
-\fancyhead[RO, Le]{\leftmark}
-\fancyfoot[C]{\textbf{\thepage}}
+% \renewcommand{\chapterpagestyle}{fancy}
+% \pagestyle{fancy}
+\pagestyle{plain}
+% \fancyhead{}
+% \fancyhead[RO, Le]{\leftmark}
+% \fancyfoot[C]{\textbf{\thepage}}
 
 
 %% setup config end
