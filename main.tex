@@ -3,17 +3,15 @@
   paper=a5,
   version=last,
   chapterprefix=true,
-  bindingoffset=5mm,
   ]{scrbook}
 
-\usepackage{lipsum} % For generating dummy text
 \usepackage{background}
 \usepackage{ifthen}
 \usepackage{parskip}
 \usepackage{tikz}
 \usepackage{wrapfig}
 \usepackage{etoolbox}
-\usepackage[a5paper, bindingoffset=5mm, inner=1cm, top=1.5cm, bottom=2cm, footskip=17.5pt]{geometry}
+\usepackage[a5paper, bindingoffset=5mm, inner=1cm, outer=2cm, top=1.5cm, bottom=2cm, footskip=17.5pt]{geometry}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -204,6 +202,7 @@
 
     \subsection{Bonus Souls}
     \cardfigv{assets/bonus_soul.png}
+
     Once you are more familiar with the game’s mechanics, you are encouraged to add \textbf{bonus souls} to your games.
 
     When starting a game where you are playing with bonus souls, you shuffle them and pick 3 at random. Those 3 are the \textbf{active bonus souls} for the game. These cards are not added to any deck and are instead put face up next to the play area. Bonus souls, before they are gained, are not considered in play.
@@ -1194,6 +1193,4 @@
 }}
   \addtocounter{currentpage}{1}
 }
-
-    
-\end{document} % This is the end of the document
+\end{document}
