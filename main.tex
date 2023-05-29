@@ -3,14 +3,15 @@
   paper=a5,
   version=last,
   chapterprefix=true,
-  bindingoffset=5mm,
   ]{scrbook}
 
+\usepackage{background}
+\usepackage{ifthen}
 \usepackage{parskip}
 \usepackage{tikz}
 \usepackage{wrapfig}
 \usepackage{etoolbox}
-\usepackage[a5paper, bindingoffset=5mm, top=1.75cm, bottom=2cm, footskip=17.5pt]{geometry}
+\usepackage[a5paper, bindingoffset=5mm, inner=1cm, outer=2cm, top=1.5cm, bottom=2cm, footskip=17.5pt]{geometry}
 \usepackage{hyperref}
 \hypersetup{
     colorlinks,
@@ -63,16 +64,19 @@
 \newcommand{\tap}{\includegraphics[scale=0.1]{./assets/Tag_Tap.png}}
 \newcommand{\pay}{\includegraphics[scale=0.1]{./assets/Tag_Paid.png}}
 \newcommand{\dice}{\includegraphics[scale=0.15]{./assets/Icon_Dice.png}}
-\newcommand{\cardw}{0.3\textwidth}
-\newcommand{\cardv}{0.41\textwidth}
+\newcommand{\cardwbox}{0.3\textwidth}
+\newcommand{\cardvbox}{0.41\textwidth}
+\newcommand{\cardw}{0.315\textwidth}
+\newcommand{\cardv}{0.425\textwidth}
+
 \newcommand{\cardfigv}[1]{
-    \begin{wrapfigure}[12]{R}{\cardw}
-        \includegraphics[width=\cardw]{#1}
+    \begin{wrapfigure}[12]{R}{\cardwbox}
+        \hspace{-.015\textwidth}\includegraphics[width=\cardw]{#1}
     \end{wrapfigure}
 }
 \newcommand{\cardfigh}[1]{
-    \begin{wrapfigure}[9]{R}{\cardv}
-        \includegraphics[height=\cardw]{#1}
+    \begin{wrapfigure}[9]{R}{\cardvbox}
+        \hspace{-.015\textwidth}\includegraphics[height=\cardw]{#1}
     \end{wrapfigure}
 }
 
@@ -98,6 +102,7 @@
 \date{\today}
 
 \begin{document}
+    \backgroundsetup{contents={}}
     \begin{titlepage}
         \centering
         \includegraphics[width=\textwidth]{assets/foursouls.png}\\
@@ -197,6 +202,7 @@
 
     \subsection{Bonus Souls}
     \cardfigv{assets/bonus_soul.png}
+
     Once you are more familiar with the game’s mechanics, you are encouraged to add \textbf{bonus souls} to your games.
 
     When starting a game where you are playing with bonus souls, you shuffle them and pick 3 at random. Those 3 are the \textbf{active bonus souls} for the game. These cards are not added to any deck and are instead put face up next to the play area. Bonus souls, before they are gained, are not considered in play.
@@ -1155,5 +1161,36 @@
     \textbf{Testers} – Jackson Moore, Tyler Glaiel, Danielle McMillen, George Fan, Eli Evans, Acacia Evans, Jay Lewis, Graeme Little, Leon Masters, Dan Zaelit, Cole O’Brien, Doug O’Brien, Crystal Evans, Joe Evans, Alex Austin, Caitlyn Yantis, Peach McMillen, \& special thanks to our playtesters from the Maestro Media discord server.
     \vfill
     \textbf{PDF Booklet Editor} – @Kyek; \textit{Layout:} @keraldi
+    
+    
+\newcounter{printpages}
+\setcounter{printpages}{68}
 
-\end{document} % This is the end of the document
+\newcounter{currentpage}
+\setcounter{currentpage}{\thepage}
+\usetikzlibrary{calc}
+
+\whiledo{\thecurrentpage <  \numexpr\theprintpages + 1\relax}{
+  \null\newpage
+  \backgroundsetup{%
+ position=current page.center,
+ angle=0,
+ scale=1,
+ contents={%
+  \begin{tikzpicture}%
+    [
+      normal lines/.style={gray, very thin},
+      every node/.append style={black, align=center, opacity=1}
+    ]
+    \foreach \y in {0.6,1.2,...,21}
+      \draw[normal lines] (0,\y) -- (148mm,\y);
+    \ifodd\value{page}
+      \draw[normal lines] (123mm,0) -- (123mm,210mm);
+    \else
+      \draw[normal lines] (25mm,0) -- (25mm,210mm);
+    \fi
+  \end{tikzpicture}%
+}}
+  \addtocounter{currentpage}{1}
+}
+\end{document}
