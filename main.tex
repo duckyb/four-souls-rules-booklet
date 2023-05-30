@@ -20,7 +20,25 @@
     urlcolor=black
 }
 % \usepackage{fancyhdr}
-    
+
+% custom inline graphics
+\newcommand*{\inlineicon}[1]{%
+    \raisebox{-.3\baselineskip}{%
+        \smash{%
+            \includegraphics[
+            % height=\baselineskip,
+            width=\baselineskip,
+            keepaspectratio,
+            ]{#1}%
+        }%
+    }%
+}
+% declare icons
+\newcommand{\tap}{\inlineicon{./assets/ms-tap.png}}
+\newcommand{\pay}{\inlineicon{./assets/ms-paid.png}}
+\newcommand{\dice}{\inlineicon{./assets/ms-dice.png}}
+\newcommand{\heart}{\inlineicon{./assets/ms-heart.png}}
+\newcommand{\soul}{\inlineicon{./assets/ms-soul.png}}
 
 %% setup config stuff
 
@@ -60,9 +78,6 @@
 \setlength\intextsep{0pt}
 \let\cleardoublepage\clearpage
 
-\newcommand{\tap}{\includegraphics[scale=0.1]{./assets/Tag_Tap.png}}
-\newcommand{\pay}{\includegraphics[scale=0.1]{./assets/Tag_Paid.png}}
-\newcommand{\dice}{\includegraphics[scale=0.15]{./assets/Icon_Dice.png}}
 \newcommand{\cardw}{0.3\textwidth}
 \newcommand{\cardv}{0.41\textwidth}
 \newcommand{\cardfigv}[1]{
@@ -172,7 +187,7 @@
     \textbf{Monsters} can be attacked, unless otherwise specified (see \textbf{Attacking}\footnote{page~\pageref{attacking}}).
     When a monster is killed, it yields a reward, as indicated in the reward box on the card. The \textbf{active player} (the player whose turn it is) always receives the rewards when a monster dies, regardless of who actually killed it. The same is true for any souls that may be gained when a \textbf{boss} dies.
 
-    \textbf{Boss cards} are a type of non-event monster card. They tend to be harder to kill than other monsters, but tend to yield greater rewards, as well as souls! When a monster with a soul icon dies, the active player gains it as a \textbf{soul}, unless otherwise specified.
+    \textbf{Boss cards} are a type of non-event monster card. They tend to be harder to kill than other monsters, but tend to yield greater rewards, as well as souls! When a monster with a soul\soul\ icon dies, the active player gains it as a \textbf{soul}, unless otherwise specified.
 
     \subsection{Events}
     Event cards are a type of monster card that have no stat block. They become \textbf{events} when in play, and also exist in \textbf{monster slots}, but they can’t be attacked.
@@ -185,9 +200,9 @@
     \textbf{Curse cards} are a type of event card, with the keyword ability \textbf{curse} (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}). The active player chooses which player receives any revealed curses, and they are placed face up near that player’s character. When a player dies, they put all curses they control into discard.
 
     \section{Souls}
-    A number of cards of different types have a soul icon. When a player controls a card with a soul icon as a \textbf{soul}, it provides them with a soul value. The soul value a soul provides is normally indicated by the icon on the card, but can also be indicated by an effect that specifies a value. Souls are quite important – when a player controls a total soul value of 4, they win! Players keep any souls they control face up next to their character to keep track of them. The number of souls a player controls is public information.
+    A number of cards of different types have a soul\soul\ icon. When a player controls a card with a soul\soul\ icon as a \textbf{soul}, it provides them with a soul value. The soul value a soul provides is normally indicated by the icon on the card, but can also be indicated by an effect that specifies a value. Souls are quite important – when a player controls a total soul value of 4, they win! Players keep any souls they control face up next to their character to keep track of them. The number of souls a player controls is public information.
 
-    There are a number of different ways a player can gain a card with a soul icon as an object called a \textbf{soul}. If the card has a reward box, the active player (unless otherwise specified) gains it as a soul when it dies or is destroyed. Otherwise it is likely an ability on the card will specify what conditions need to be met, or what otherwise needs to happen, before it can be gained as a soul.
+    There are a number of different ways a player can gain a card with a soul\soul\ icon as an object called a \textbf{soul}. If the card has a reward box, the active player (unless otherwise specified) gains it as a soul when it dies or is destroyed. Otherwise it is likely an ability on the card will specify what conditions need to be met, or what otherwise needs to happen, before it can be gained as a soul.
 
     Even if a \textbf{soul} has a soul value greater than 1 it is still considered a single object. This means a soul with a soul value of 2 can be destroyed or stolen, for example, just the same as any other soul with a soul value of 1.
 
@@ -213,7 +228,7 @@
     
     Character cards have a stat box with a health stat and an attack stat. These define the stats of the player that controls that character.
     
-    A character may be worth souls if it has a soul icon on it, or if there is a soul value specified by an effect. For example, The Lost provides a soul value of 1. Characters that have a soul value are \textbf{not} considered a soul.
+    A character may be worth souls if it has a soul\soul\ icon on it, or if there is a soul value specified by an effect. For example, The Lost provides a soul value of 1. Characters that have a soul value are \textbf{not} considered a soul.
 
     \section{Rooms Cards}
     \cardfigh{assets/room.png}
@@ -238,8 +253,8 @@
     The stat box of a character defines the stats of the player that controls it. Character stat boxes only detail a Health and Attack stat; if an ability allows a player to be attacked by another player, it will specify what their evasion is for that attack.
     \subsection*{Reward Box}
     Details the rewards of a card. When an object with a reward box dies or is destroyed, the active player gains any rewards detailed in the reward box, unless otherwise specified.
-    \subsection*{Soul Icon}
-    Some cards have a \textbf{soul icon}. This indicates the soul value that the card would provide if gained as a soul by a player.
+    \subsection*{soul\soul\ icon}
+    Some cards have a \textbf{soul\soul\ icon}. This indicates the soul value that the card would provide if gained as a soul by a player.
     \subsection*{Set Symbol}
     Cards that are not part of the base game have a symbol here that informs you of the card’s origin (i.e. what set it belongs to).
     \subsection*{3\plus\ Player Only Symbol}
@@ -411,7 +426,7 @@
 
     If multiple effects allowing you to attack other players exist at the same time and specify that players have a different evasion stat, the effect that was created most recently takes precedence.
     \section{Cancel}
-    \textbf{Canceling} is an action done to things on the stack. If something is canceled, it is removed from the stack before it can resolve and therefore has no effect. If \textbf{death} is canceled, the object that would’ve died heals until it has at least 1 HP, unless otherwise specified.
+    \textbf{Canceling} is an action done to things on the stack. If something is canceled, it is removed from the stack before it can resolve and therefore has no effect. If \textbf{death} is canceled, the object that would’ve died heals until it has at least 1 HP\heart, unless otherwise specified.
     \section{Copying}
     \label{copying}
     There are a few abilities in the game that can \textbf{copy} something, for example an object in play (most often an item), a loot or loot card, or just an ability.
@@ -421,7 +436,7 @@
         \item Any abilities the card has
         \item The card’s name
         \item A stat block, if the card has one
-        \item A soul icon, if the card has one
+        \item A soul\soul\ icon, if the card has one
     \end{itemize}
 
     Anything that is tied to a specific instance of an item is not copied, however. It is easy to think of this as anything that the item wouldn’t have had when you first obtained it. For example:
@@ -470,28 +485,28 @@
 
     Any counters on an object are removed when it leaves play, unless otherwise specified. Remember, if a card becomes \textbf{covered in a slot}, it is considered to have left play.
     \section{Damage}
-    Damage is a value applied to an object with an HP stat. Damage causes an object to lose that much HP. Damage is marked on an object when any damage on the stack resolves. For the sake of this section, a player is considered an object with HP equal to what is on their character card.
+    Damage is a value applied to an object with an HP\heart\ stat. Damage causes an object to lose that much HP\heart. Damage is marked on an object when any damage on the stack resolves. For the sake of this section, a player is considered an object with HP\heart\ equal to what is on their character card.
 
-    Objects cannot go below 0HP. If an object with an HP stat has 0HP at any point, its death is put on \textbf{the stack} the next time any player would receive priority. An object with 0HP can still take damage, but that damage won’t be marked on the object, and won’t make it go below 0.
+    Objects cannot go below 0 HP\heart. If an object with an HP\heart\ stat has 0 HP\heart\ at any point, its death is put on \textbf{the stack} the next time any player would receive priority. An object with 0 HP\heart\ can still take damage, but that damage won’t be marked on the object, and won’t make it go below 0.
 
-    To \textbf{deal damage} to an object, that much damage is put on the stack targeting that object. When that damage resolves, that much damage is marked on the object (if it has more than 0 HP). The damage source is the object with the ability dealing the damage, or the controller of that same object. The damage source is only considered to have \textbf{dealt damage} when the damage resolves, not simply when it is put on the stack.
+    To \textbf{deal damage} to an object, that much damage is put on the stack targeting that object. When that damage resolves, that much damage is marked on the object (if it has more than 0 HP\heart). The damage source is the object with the ability dealing the damage, or the controller of that same object. The damage source is only considered to have \textbf{dealt damage} when the damage resolves, not simply when it is put on the stack.
 
-    An object is considered to \textbf{take damage} whenever damage targeting it on the stack resolves. If an ability or effect says a player or object \textbf{takes damage} (e.g. “Each time a player rolls a 1, this takes 1 damage.”), that much damage is put on the stack targeting that object. When that damage resolves, that much damage is marked on the object (if it has more than 0 HP). The damage source in this case is the game. If no object is specified, there is an implicit \textbf{‘you’} at the start of the ability (e.g. “\textbf{Take 1 damage}” means “\textbf{You take 1 damage}”).
+    An object is considered to \textbf{take damage} whenever damage targeting it on the stack resolves. If an ability or effect says a player or object \textbf{takes damage} (e.g. “Each time a player rolls a 1, this takes 1 damage.”), that much damage is put on the stack targeting that object. When that damage resolves, that much damage is marked on the object (if it has more than 0 HP\heart). The damage source in this case is the game. If no object is specified, there is an implicit \textbf{‘you’} at the start of the ability (e.g. “\textbf{Take 1 damage}” means “\textbf{You take 1 damage}”).
 
     Any damage marked on a player is tied to the player themself rather than their character card. If that player was to switch character cards, they would retain any marked damage they had before the switch. Similarly, if a player flips their character card, they retain any damage marked on them.
 
     You can’t deal or take 0 damage. If you miss an attack roll against a monster that has an attack stat of 0, or an ability says to deal or take 0 damage, no damage is put on the stack, and nothing happens.
 
-    If an object’s max HP is reduced, if it has any marked damage, an equal amount of damage is also removed. This is not considered healing. For example, if a player has 2 max HP and 1 marked damage (and therefore currently 1 HP remaining), 1 damage is removed if their max HP is reduced to 1 HP. This means that they would still be on 1 HP. If, for the sake of this example, we consider each point of max HP as a ‘heart container’ that can individually have one damage marked on it and become empty, it is the empty heart container that is lost when the max HP is reduced.
+    If an object’s max HP\heart\ is reduced, if it has any marked damage, an equal amount of damage is also removed. This is not considered healing. For example, if a player has 2 max HP\heart\ and 1 marked damage (and therefore currently 1 HP\heart\ remaining), 1 damage is removed if their max HP\heart\ is reduced to 1 HP\heart. This means that they would still be on 1 HP\heart. If, for the sake of this example, we consider each point of max HP\heart\ as a ‘heart container’ that can individually have one damage marked on it and become empty, it is the empty heart container that is lost when the max HP\heart\ is reduced.
 
-    If an object that has damage marked on it stops having an HP stat for any reason, that damage is removed.
+    If an object that has damage marked on it stops having an HP\heart\ stat for any reason, that damage is removed.
     \section{Deactivate}
     \textbf{Deactivate} is an action done to objects. To deactivate an object, it is changed to a deactivated state (turned sideways 90°).
     \section{Destroy and Kill}
     \label{destroy}
     \textbf{Destroy/Kill} is an action that is done to objects in play. \textbf{Destroy} is most commonly used on items, souls, and rooms, while \textbf{kill} is most commonly used on monsters and players.
 
-    To \textbf{destroy/kill}, the object being destroyed/killed has its HP set to 0 if it has an HP stat. If it isn’t moved to discard due to having 0 HP, it is moved to discard. Characters and eternal objects are not moved to discard if they are destroyed or killed.
+    To \textbf{destroy/kill}, the object being destroyed/killed has its HP\heart\ set to 0 if it has an HP\heart\ stat. If it isn’t moved to discard due to having 0 HP\heart, it is moved to discard. Characters and eternal objects are not moved to discard if they are destroyed or killed.
 
     \textbf{Die} is a related action. It means that the game \textbf{destroys/kills} a specified object in play. An object that is destroyed/killed \textbf{dies}.
     \section{Discard}
@@ -536,7 +551,7 @@
         \item To \textbf{gain treasure}, you move the specified number of cards from the top of the treasure deck into play under your control.
         \item To \textbf{gain an object in play} (e.g. an item or soul), you move it under your control.
         \begin{itemize}
-            \item When an object (most likely a monster) with a reward box and soul icon dies or is destroyed, the active player gains it as a soul, unless otherwise specified (see \textbf{Monster Death}\footnote{page~\pageref{monsterdeath}}).  
+            \item When an object (most likely a monster) with a reward box and soul\soul\ icon dies or is destroyed, the active player gains it as a soul, unless otherwise specified (see \textbf{Monster Death}\footnote{page~\pageref{monsterdeath}}).  
         \end{itemize}
     \end{itemize}
     \textbf{Give} (and therefore \textbf{steal} and \textbf{swap}) is an action that can be done to many things:      
@@ -569,11 +584,11 @@
     
     Note that both stealing and swapping involve \textbf{giving}, and therefore will count as \textbf{giving} for any abilities that look for it.
     \section{Heal}
-    \textbf{Heal} is an action that can be done to objects with an HP stat. An object can either be healed a specified amount, or to full HP. An object cannot be healed past its max HP.
+    \textbf{Heal} is an action that can be done to objects with an HP\heart\ stat. An object can either be healed a specified amount, or to full HP\heart. An object cannot be healed past its max HP\heart.
 
     \begin{itemize}
-        \item To heal a specified amount of HP, that much damage is removed from the healed object. 
-        \item To heal to full HP, all damage is removed from the healed object.
+        \item To heal a specified amount of HP\heart, that much damage is removed from the healed object. 
+        \item To heal to full HP\heart, all damage is removed from the healed object.
     \end{itemize}
     \section{If you do}
     If an ability uses the phrase ‘If you do’, it means that the previous part of the ability must take effect for the next part to take effect. For example, if an item said ‘Destroy this. If you do, gain 25¢.’ you would only gain the 25¢ if the item had been able to be destroyed by its own ability.
@@ -601,10 +616,10 @@
             \item Move that many ¢ from your ¢ pool to the specified ¢ pool. If no ¢ pool is specified, then it is moved to the game’s ¢ pool.
             \item If you don’t have enough ¢ to pay, you can’t pay.
         \end{itemize}
-        \item To pay HP: 
+        \item To pay HP\heart: 
         \begin{itemize}
-            \item You lose that much HP.
-            \item If you don’t have enough HP to pay, you can’t pay.
+            \item You lose that much HP\heart.
+            \item If you don’t have enough HP\heart\ to pay, you can’t pay.
         \end{itemize}
     \end{itemize}
     \section{Play}
@@ -616,7 +631,7 @@
 
     \begin{itemize}
         \item If an ability or effect instructs you to \textbf{prevent damage}, that damage is removed from the stack.
-        \item If an ability or effect instructs you to \textbf{prevent death}, that death is removed from the stack, and the object that would have died heals until it has at least 1 HP, unless that ability or effect specifies how much HP is healed instead.
+        \item If an ability or effect instructs you to \textbf{prevent death}, that death is removed from the stack, and the object that would have died heals until it has at least 1 HP\heart, unless that ability or effect specifies how much HP\heart\ is healed instead.
     \end{itemize}
     \section{Recharge}
     \textbf{Recharge} is an action done to objects. To recharge an object, it is changed to a charged state (turned upright).
@@ -659,7 +674,7 @@
         \item Abilities that trigger at the end of the turn trigger, then priority passes between all players.
         \item If the active player has more loot cards in their hand than their \textbf{max hand size} (10 by default), they discard loot cards until they have as many cards left in their hand as their max hand size.
         \item If playing with the room deck, and if a monster died during the turn, the active player may put a room into discard.
-        \item The turn ends and is passed to the next player. All objects with an HP stat heal to full HP, including any dead players, and abilities and effects that last till end of turn end.
+        \item The turn ends and is passed to the next player. All objects with an HP\heart\ stat heal to full HP\heart, including any dead players, and abilities and effects that last till end of turn end.
     \end{enumerate}
     An effect or ability that ends the turn forces the \textbf{end phase to begin}, but will not prevent any of the above from happening. An effect or ability that ends the turn does not remove anything from \textbf{the stack}.
 
@@ -684,11 +699,11 @@
  
     \includegraphics[width=\textwidth]{assets/Monster-Stat-Breakdown-768x484.png}
 
-    Each \textbf{attack} consists of multiple \textbf{attack rolls}. Once an attack has started, the attacking player repeatedly rolls a D6 against their chosen target, most commonly a monster. Once you have started an attack, you are committed to the death! The attack will only end when either the attacking player or the target of the attack dies, or if either the attacker or attacked object has 0HP before an attack roll would be made. Players may use the D8 to keep track of the HP of the monster they are attacking.
+    Each \textbf{attack} consists of multiple \textbf{attack rolls}. Once an attack has started, the attacking player repeatedly rolls a D6 against their chosen target, most commonly a monster. Once you have started an attack, you are committed to the death! The attack will only end when either the attacking player or the target of the attack dies, or if either the attacker or attacked object has 0 HP\heart\ before an attack roll would be made. Players may use the D8 to keep track of the HP\heart\ of the monster they are attacking.
 
-    Dice rolls that are made as part of an attack are called \textbf{attack rolls}. Damage that is done as a result of an attack roll is called \textbf{combat damage}. If the result of the attack roll is equal to or higher than the target’s evasion, the attacking player hits and deals \textbf{combat damage} equal to their attack to the target (that much combat damage is put on the stack, directed at the target). If the result of the attack roll is less than the target’s evasion, the attacking player misses and \textbf{combat damage} equal to the target’s attack is put on the stack, directed at the attacking player (the target deals that much combat damage to the attacking player). Damage is dealt to the appropriate target when this then resolves and leaves the stack. If that damage reduces either the attacking player or attacked object to 0HP, their death is put on the stack. An attack ends when either the player or the target dies, or if either the attacking player or attacked object has 0HP before the next attack roll would be made. An attack can also end by being canceled. This can happen directly by an ability or effect, or through an ability or effect moving the turn to the end phase.
+    Dice rolls that are made as part of an attack are called \textbf{attack rolls}. Damage that is done as a result of an attack roll is called \textbf{combat damage}. If the result of the attack roll is equal to or higher than the target’s evasion, the attacking player hits and deals \textbf{combat damage} equal to their attack to the target (that much combat damage is put on the stack, directed at the target). If the result of the attack roll is less than the target’s evasion, the attacking player misses and \textbf{combat damage} equal to the target’s attack is put on the stack, directed at the attacking player (the target deals that much combat damage to the attacking player). Damage is dealt to the appropriate target when this then resolves and leaves the stack. If that damage reduces either the attacking player or attacked object to 0 HP\heart, their death is put on the stack. An attack ends when either the player or the target dies, or if either the attacking player or attacked object has 0 HP\heart\ before the next attack roll would be made. An attack can also end by being canceled. This can happen directly by an ability or effect, or through an ability or effect moving the turn to the end phase.
 
-    When an attack ends due to a player or monster dying (or an attack being canceled), any unresolved attack rolls and combat damage are removed from \textbf{the stack}. This means you could, for example, respond to an attack roll that would miss if it resolved and play a bomb, killing a monster with only 1 HP left before it would kill you. Similarly, however, be wary – another player might respond to your dice roll, that would hit if it resolved, to kill you and end the attack before you can kill the monster, depriving you of your reward!
+    When an attack ends due to a player or monster dying (or an attack being canceled), any unresolved attack rolls and combat damage are removed from \textbf{the stack}. This means you could, for example, respond to an attack roll that would miss if it resolved and play a bomb, killing a monster with only 1 HP\heart\ left before it would kill you. Similarly, however, be wary – another player might respond to your dice roll, that would hit if it resolved, to kill you and end the attack before you can kill the monster, depriving you of your reward!
 
     In some cases, players can be instructed to make attack rolls by an ability even when they aren’t the attacking player. Since they aren’t the attacking player, the attack will not end if they die. Dead players cannot make attack rolls, however, even if they aren’t the attacking player. As normal, the attack ends if the attacking player dies, and therefore no further attack rolls would be made by any player.
 
@@ -717,11 +732,11 @@
 
     \chapter{Death}
     \label{death}
-    If a player or monster has 0HP at any point, their death is put on \textbf{the stack} the next time any player would receive priority. If they can’t \textbf{prevent} or \textbf{cancel} that death by the time it \textbf{resolves}, they follow the steps for either player or monster death below.
+    If a player or monster has 0 HP\heart\ at any point, their death is put on \textbf{the stack} the next time any player would receive priority. If they can’t \textbf{prevent} or \textbf{cancel} that death by the time it \textbf{resolves}, they follow the steps for either player or monster death below.
 
-    The above is also true for any other objects (e.g. attackable items or rooms) that have an HP stat. In those cases, follow the series of steps for \textbf{Monster Death} below, replacing the word ‘monster’ with the relevant object type. For example, triggered abilities that trigger from a \textbf{‘monster’} dying wouldn’t trigger, as it isn’t a \textbf{‘monster’} that has died.
+    The above is also true for any other objects (e.g. attackable items or rooms) that have an HP\heart\ stat. In those cases, follow the series of steps for \textbf{Monster Death} below, replacing the word ‘monster’ with the relevant object type. For example, triggered abilities that trigger from a \textbf{‘monster’} dying wouldn’t trigger, as it isn’t a \textbf{‘monster’} that has died.
 
-    Eternal objects can’t die. If an Eternal object has 0HP, the game will not attempt to put its death onto the stack.
+    Eternal objects can’t die. If an Eternal object has 0 HP\heart, the game will not attempt to put its death onto the stack.
 
     \section{Monster Death}
     \label{monsterdeath}
@@ -731,7 +746,7 @@
         \item Abilities that trigger when a monster dies, but not after gaining rewards, trigger here.
         \item The active player gains any rewards from the monster.
         \item Abilities that trigger when a monster dies, after gaining rewards, trigger here.
-        \item If the monster has a soul icon, it becomes a soul and the active player gains it. 
+        \item If the monster has a soul\soul\ icon, it becomes a soul and the active player gains it. 
         \item Otherwise, it is moved to discard.
         \item Refill monster slots, if applicable.
     \end{enumerate}
@@ -943,7 +958,7 @@
     \end{itemize}
 
     \subsection*{Soul Items}
-    An item that has a soul icon and may yield a soul is a soul item. This takes precedence over anything else – for example a one use item that can become a soul is considered a soul item.
+    An item that has a soul\soul\ icon and may yield a soul is a soul item. This takes precedence over anything else – for example a one use item that can become a soul is considered a soul item.
 
     \section{Loot Ratio}
     \subsection*{Deck Ratio}
@@ -1014,15 +1029,15 @@
         \hline
     \end{tabular}
     \subsection*{Basic Enemies}
-    Most monster cards with a stat block but without a soul icon are basic enemies. Basic enemies can be attacked and tend to yield rewards when killed.
+    Most monster cards with a stat block but without a soul\soul\ icon are basic enemies. Basic enemies can be attacked and tend to yield rewards when killed.
     \subsection*{Cursed Enemies}
-    Cursed enemies are similar to basic enemies in that they don’t have a soul icon. Cursed enemies have abilities that globally effect the game whenever they are in play. Monster cards that are included in this category have ‘Cursed’ in their name.
+    Cursed enemies are similar to basic enemies in that they don’t have a soul\soul\ icon. Cursed enemies have abilities that globally effect the game whenever they are in play. Monster cards that are included in this category have ‘Cursed’ in their name.
     \subsection*{Holy/Charmed Enemies}
     Holy enemies are similar to cursed enemies, except that their abilities tend to be things that are broadly positive for players, rather than negative. Monster cards that are included in this category have ‘Holy’ in their name.
     
     Charmed enemies force players to choose another player to receive a benefit of some kind when they die. Monster cards that are included in this category have ‘Charmed’ in their name.
     \subsection*{Bosses}
-    Bosses tend to be harder to kill than other monsters, but yield greater rewards, as well as usually souls! Boss cards therefore usually have a soul icon on them.
+    Bosses tend to be harder to kill than other monsters, but yield greater rewards, as well as usually souls! Boss cards therefore usually have a soul\soul\ icon on them.
     \subsection*{Epic Bosses}
     Epic Bosses tend to be even harder to kill than regular Bosses! They also yield greater rewards than regular bosses, and tend to have game-changing effects when they are defeated. This is often due to having a soul value of 2, but some Epic Bosses have other ways of having a significant effect on the state of play.
     \subsection*{Good Events}
@@ -1072,7 +1087,7 @@
     \subsection*{Deactivate}
     Turn an object sideways.
     \subsection*{Destroy/Kill}
-    Set the HP stat of an object in play to 0, if it has one. Move it to the appropriate discard either way.
+    Set the HP\heart\ stat of an object in play to 0, if it has one. Move it to the appropriate discard either way.
     \subsection*{Die}
     The game destroys/kills a specified object in play.
     \subsection*{Discard}
@@ -1090,7 +1105,7 @@
     \subsection*{Guppy}
     This serves as a marker for some specific abilities.
     \subsection*{Heal}
-    The target object recovers that many HP. An object cannot heal beyond its max HP.
+    The target object recovers that many HP\heart. An object cannot heal beyond its max HP\heart.
     \subsection*{Indomitable}
     Indomitable monsters can’t be covered. If they would be put in a monster slot, expand monster slots by 1 and put them in that new slot (see \textbf{Keyworded Abilities}\footnote{page~\pageref{keyworded}}).
     \subsection*{Level Up/Down}
@@ -1100,11 +1115,11 @@
     \subsection*{Lose ¢}
     Move the specified number of ¢ from your ¢ pool into the game’s ¢ pool. If you don’t have the specified number of ¢, you just lose as many ¢ as possible.
     \subsection*{Pay}
-    To pay ¢, you move the specified number of ¢ from your ¢ pool to the game’s ¢ pool. If you don’t have enough ¢ to pay, you can’t pay. To pay <3, you lose that many <3. If you don’t have enough <3 to pay, you can’t pay. This doesn’t change your max HP.
+    To pay ¢, you move the specified number of ¢ from your ¢ pool to the game’s ¢ pool. If you don’t have enough ¢ to pay, you can’t pay. To pay <3, you lose that many <3. If you don’t have enough <3 to pay, you can’t pay. This doesn’t change your max HP\heart.
     \subsection*{Play}
     Move a loot card from your hand to the stack.
     \subsection*{Prevent}
-    To prevent damage, remove that damage from the stack. To prevent death, remove that death from the stack and heal until you have at least 1 HP.
+    To prevent damage, remove that damage from the stack. To prevent death, remove that death from the stack and heal until you have at least 1 HP\heart.
     \subsection*{Recharge}
     Return a deactivated object to a charged state (turned upright).
     \subsection*{Reroll}
