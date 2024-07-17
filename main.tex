@@ -39,6 +39,7 @@
 \newcommand{\dice}{\inlineicon{./assets/ms-dice.png}}
 \newcommand{\heart}{\inlineicon{./assets/ms-heart.png}}
 \newcommand{\soul}{\inlineicon{./assets/ms-soul.png}}
+\newcommand{\sword}{\inlineicon{./assets/ms-sword.png}}
 
 %% setup config stuff
 
@@ -484,6 +485,14 @@
     Counters put on a \textbf{player} are tied to that specific player, and will not be removed even if their \textbf{character} changes. Counters put on a player’s \textbf{character}, however, are tied specifically to the character, \textbf{not the player}, and would be removed if the character was to change.
 
     Any counters on an object are removed when it leaves play, unless otherwise specified. Remember, if a card becomes \textbf{covered in a slot}, it is considered to have left play.
+    \subsection*{Special Counters}
+    There are a few special types of counter in Four Souls that convey an ability onto the card they are placed on without that ability having to have been defined by another ability elsewhere.
+    \subsection*{\heart\ Counters}
+    \heart\ counters are a special type of counter. If a \heart\ counter is placed on an item or character, it gives that item or character the ability “You have \plus1\heart.” An object can have more than one \heart\ counter at a time. If an object later loses a \heart\ counter, it also loses the ability that \heart\ counter was giving it.
+    \subsection*{\sword\ Counters}
+    \sword\ counters are a special type of counter. If a \sword\ counter is placed on an item or character, it gives that item or character the ability “You have \plus1\sword.” If a \sword\ counter is placed on a monster, it gives that monster the ability “This has \plus1\sword.” An object can have more than one \sword\ counter at a time. If an object later loses a \sword\ counter, it also loses the ability that \sword\ counter was giving it.
+    \subsection*{Eternal Counters}
+    Eternal counters are a special type of counter. If an eternal counter is placed on an object, it gives that object the keyworded ability \textbf{Eternal}. If an object later loses an Eternal counter, it also loses the ability that Eternal counter was giving it.
     \section{Damage}
     Damage is a value applied to an object with an HP\heart\ stat. Damage causes an object to lose that much HP\heart. Damage is marked on an object when any damage on the stack resolves. For the sake of this section, a player is considered an object with HP\heart\ equal to what is on their character card.
 
