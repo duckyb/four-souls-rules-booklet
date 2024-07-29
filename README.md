@@ -8,10 +8,16 @@ By compiling the rules into a PDF format, we aim to make it convenient for you t
 
 ## For developers
 
-### Compiling
+### Compiling via CLI
 
 To create a new version of `main.pdf` reflecting the changes you made in `main.tex` you need to:
 
 1. Install LaTeX on your local machine
 2. Make sure you have `pdflatex` available in your command prompt
 3. Run `pdflatex main.tex` from the root of this project
+
+### Compiling with VSCode
+
+1. Install [LaTeX Workshop](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop) from the VSCode Marketplace.
+2. Install LaTeX and Perl on your local machine
+3. Run "LaTeX Workshop: Build LaTeX project" from the command palette
